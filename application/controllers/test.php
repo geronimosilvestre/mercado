@@ -25,5 +25,16 @@ class test extends CI_controller {
         }
 
     }
+
+    public function marcas(){
+        $this->load->model("marcas_model");
+        $lista=$this->marcas_model->listar();
+        echo "<pre>";
+        print_r($lista);
+        $this->marcas_model->set_order("marca_id","DESC");
+        $lista=$this->marcas_model->listar();
+        print_r($lista);
+        echo"<pre>";
+    }
 }
 ?>

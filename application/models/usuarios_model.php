@@ -4,14 +4,36 @@ class usuarios_model extends CI_model{
     protected $pk="usuario_id";
     protected $table="usuarios";
     protected $usuario="usuario";
-    protected $password="password"
+    protected $password="password";
     protected $email="email";
     protected $roll="roll_id";
     protected $estado="estado";
     protected $ultlogin="ultlogin";
 
-    public function defaul_select(){
+    protected $default_order=array("campo"=>"nombre","orden"=>"ASC");//parametros para generar o filtrar el listado con ese roden en particular
+    protected $order=array();
+
+    public function default_select(){
         $this->db->select($this->table.".*");
+    }
+
+    public function set_order($campo,$orden="ASC"){
+        $this->order["campo"]=$campo;
+        $this->order["orden"]=$orden;
+    }
+
+    public function listar () {
+        $this->default_select();
+        if($this->order){
+            $orden=$this->order["orden"];
+            $campo=$this->order["campo"];
+            
+        }else{
+            $campo=$this->default_order["campo"];
+            $orden=$this->default_order["orden"];
+        }
+        $this->db->order_by($campo,$orden);
+        return $this->db->get($this->table)->result_array();
     }
 
     public function guardar_marcas($datos=array(),$id=null){
@@ -36,10 +58,6 @@ class usuarios_model extends CI_model{
         return $this->db->affected_rows();
     }
     
-    public function listar_usuario (){
-        $this->db->order_by($this->pk, "ASCE");
-        return $this->db->get($this->table)->result_array();
-    }
 
     public function actualiza_login ($id=""){
         $this->db->set($this->ultlogin,"now()",false);

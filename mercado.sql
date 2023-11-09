@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 19:37:54
+-- Tiempo de generación: 07-11-2023 a las 19:56:07
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -51,7 +51,7 @@ INSERT INTO `categorias` (`categoria_id`, `nombre`, `nombrecorto`, `orden`, `est
 CREATE TABLE `marcas` (
   `marca_id` int(11) NOT NULL,
   `nombre` text NOT NULL,
-  `estado` tinyint(4) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -59,7 +59,11 @@ CREATE TABLE `marcas` (
 --
 
 INSERT INTO `marcas` (`marca_id`, `nombre`, `estado`) VALUES
-(1, 'sin_marca', 0);
+(1, 'sin_marca', 1),
+(13, 'liliana', 1),
+(14, 'peabody', 1),
+(15, 'noblex', 1),
+(16, 'tcl', 1);
 
 -- --------------------------------------------------------
 
@@ -68,7 +72,7 @@ INSERT INTO `marcas` (`marca_id`, `nombre`, `estado`) VALUES
 --
 
 CREATE TABLE `productos` (
-  `producto_id` bigint(11) UNSIGNED NOT NULL,
+  `producto_id` bigint(20) UNSIGNED NOT NULL,
   `titulo` text NOT NULL,
   `descripcion` text NOT NULL,
   `precio` decimal(10,2) NOT NULL DEFAULT 0.00,
@@ -185,13 +189,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `marca_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `producto_id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `producto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_x_categorias`
