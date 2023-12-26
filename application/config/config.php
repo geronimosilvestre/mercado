@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/htdocs/HILET/clase59/mercado';
+$config['base_url'] = 'http://localhost/htdocs/mercado';
 
 /*
 |--------------------------------------------------------------------------

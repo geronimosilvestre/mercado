@@ -1,6 +1,5 @@
 <?php 
 class productos_model extends CI_model {
-
     protected $pk="producto_id";
     protected $table="productos";
     protected $titulo="titulo";
@@ -8,30 +7,8 @@ class productos_model extends CI_model {
     protected $precio="precio";
     protected $marcaid="marca_id";
 
-    protected $default_order=array("campo"=>"nombre","orden"=>"ASC");//parametros para generar o filtrar el listado con ese roden en particular
-    protected $order=array();
-
     public function default_select(){
         $this->db->select($this->table.".*");
-    }
-
-    public function set_order($campo,$orden="ASC"){
-        $this->order["campo"]=$campo;
-        $this->order["orden"]=$orden;
-    }
-
-    public function listar () {
-        $this->default_select();
-        if($this->order){
-            $orden=$this->order["orden"];
-            $campo=$this->order["campo"];
-            
-        }else{
-            $campo=$this->default_order["campo"];
-            $orden=$this->default_order["orden"];
-        }
-        $this->db->order_by($campo,$orden);
-        return $this->db->get($this->table)->result_array();
     }
 
 
